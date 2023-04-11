@@ -21,6 +21,10 @@ a {
     font-size: 20px;
 }
 
+.result {
+    font-size: 60px;
+}
+
 .bx {
     font-size: 30px;
     display: flex;
@@ -48,7 +52,7 @@ main {
 }
 
 .calculator {
-    height: 600px;
+    height: 650px;
     width: 400px;
     display: grid;
     grid-template: min-content min-content 1fr / 2fr 1fr;
@@ -84,12 +88,16 @@ main {
 .display {
     grid-area: 2/1/3/3;
     height: 120px;
-    width: 95%;
+    width: 90%;
     background-color: silver;
-    border: solid 3px black;
+    border: solid 3px hsl(0, 0%, 0%);
     box-shadow: 3px 3px inset;
     place-self: center;
     border-radius: 5px;
+    display: grid;
+    grid-template-rows: 1fr 2fr;
+    place-items: end;
+    padding: 10px;
 
 }
 
@@ -100,14 +108,19 @@ main {
     place-items: center;
 }
 
+.buttons div:hover {
+    filter: brightness(0.9);
+    cursor: pointer;
+}
+
 .buttons div {
     width: 80px;
     height: 70px;
-    border-radius: 15px;
+    border-radius: 12px;
     display: grid;
     place-items: center;
     border: solid 3px black;
-    box-shadow: 2px 2px 1px;
+    box-shadow: 3px 3px;
 }
 
 .name {
