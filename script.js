@@ -86,15 +86,23 @@ buttons.addEventListener('mouseup', (e) => {
         num2.length = 0;
         operator = '';
         input.textContent = '';
-        result.textContent = 0;
+        result.textContent = num1[0];
     }
+
+
+    //PROBLEM S OPERATOROM PO VYMAZANI CISEL A ICH PREMENE NA 0 - OPERATOR ZOSTANE A NEZRESETUJE HODNOTY NUM
+    //KED SA NEZRESETUJE OPERATOR TAK PO VZPISANI VYSLEDKU ZOSTAVAJU STALE NUM1 AJ NUM2 A KED CHCEM ZACAT NOVY
+    //PRIKLAD TAK TIETO NOVE CISLA MI PRIPISE K NEVYMAZANYM HODNOTAM V NUM1/NUM2. VYPOCITANIE VYSLEDKU MUSI RESETOVAT
+    //AJ OPERATORA AJ NUM1 AJ NUM2 - POUZIT PO VYPOCITANI VYSLEDKU 'C'?
+
 
     if (e.target.classList.contains('DEL')) {
         if (operator != '') {
             if ((num2.length != 0) && (num2[0] != 0)) {
                 num2.pop();
                 if (num2.length == 0) {
-                    num2[0] = 0;
+                    num2.push(0);
+                    //operator = '';
                 }
             }
 
@@ -103,7 +111,8 @@ buttons.addEventListener('mouseup', (e) => {
             if ((num1.length != 0) && (num1[0] != 0)) {
                 num1.pop();
                 if (num1.length == 0) {
-                    num1[0] = 0;
+                    num1.push(0);
+                    //operator = '';
                 }
             }
 
