@@ -29,7 +29,6 @@ buttons.addEventListener('mouseup', (e) => {
             if ((!(num2[0] == 0)) || ((num2[1] == '.'))) {
                 num2.push(e.target.textContent);
                 result.textContent = `${num2.join('')}`;
-                // input.textContent = `${num1.join('')} ${operator} ${num2.join('')}`;
             }
         } else if ((num1[0] == 0) && (!(num1[1] == '.'))) {
             num1.pop();
@@ -42,20 +41,25 @@ buttons.addEventListener('mouseup', (e) => {
     }
 
     //select operator only after num1 has been selected
-    if ((e.target.classList.contains('operator')) && (num1.length != 0) && (operator == '')) {
+    if ((e.target.classList.contains('operator')) && (num1.length != 0) && (num2.length == 0)) {
         operator = e.target.textContent;
-        input.textContent = `${num1.join('')} ${operator}`
+        console.log(operator);
+        input.textContent = `${num1.join('')} ${operator}`;
     }
 
     //display result after pressing = if num2 has benn added, hence all 3 variables are known, display whole equation as input value
-    if ((e.target.classList.contains('=') && (num2.length != 0))) {
-        let evaluateResult = evaluate(num1, num2, operator);
-        if (!(Number.isInteger(evaluateResult))) {
-            result.textContent = parseFloat(evaluateResult.toFixed(3));
+    if ((e.target.classList.contains('='))) {
+        if (num2.length == 0) {
+            num2.push(0);
         } else {
-            result.textContent = evaluateResult;
+            let evaluateResult = evaluate(num1, num2, operator);
+            if (!(Number.isInteger(evaluateResult))) {
+                result.textContent = parseFloat(evaluateResult.toFixed(3));
+            } else {
+                result.textContent = evaluateResult;
+            }
+            input.textContent = `${num1.join('')} ${operator} ${num2.join('')} =`;
         }
-        input.textContent = `${num1.join('')} ${operator} ${num2.join('')} =`;
     }
 
     //display result of equation after a new operator has been selected if all 3 variables are known and = is not the operator
@@ -85,6 +89,29 @@ buttons.addEventListener('mouseup', (e) => {
         result.textContent = 0;
     }
 
+    if (e.target.classList.contains('DEL')) {
+        if (operator != '') {
+            if ((num2.length != 0) && (num2[0] != 0)) {
+                num2.pop();
+                if (num2.length == 0) {
+                    num2[0] = 0;
+                }
+            }
+
+            result.textContent = `${num2.join('')}`;
+        } else {
+            if ((num1.length != 0) && (num1[0] != 0)) {
+                num1.pop();
+                if (num1.length == 0) {
+                    num1[0] = 0;
+                }
+            }
+
+
+            result.textContent = `${num1.join('')}`;
+        }
+    }
+
     //add decimal point to either num1 or num2 if it is not already present in either number
     if ((e.target.classList.contains('.'))) {
         if (operator != '') {
@@ -104,6 +131,7 @@ buttons.addEventListener('mouseup', (e) => {
     console.log(`num1 je: ${num1}`);
     console.log(`operator je: ${operator}`);
     console.log(`num2 je: ${num2}`);
+    console.log(evaluate(num1, num2, operator))
 })
 
 
@@ -117,7 +145,7 @@ function evaluate(num1, num2, operator) {
         case 'x':
             return +num1.join('') * +num2.join('');
         case '÷':
-            if (num1 == 0 || num2 == 0) {
+            if (num2 == 0) {
                 return `very funny`
             } else return +num1.join('') / +num2.join('');
     }
