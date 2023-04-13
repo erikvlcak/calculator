@@ -9,15 +9,18 @@ let res = [];
 let operator = '';
 
 buttons.addEventListener('mousedown', (e) => {
+    //click effect
     e.target.style.boxShadow = '0px 0px';
 })
 
 buttons.addEventListener('mouseup', (e) => {
 
+    //click effect
     if (e.target.className != 'buttons') {
         e.target.style.boxShadow = '3px 3px';
     }
 
+    //if operator already selected, add as num2, if not, add as num1
     if ((e.target.classList.contains('number'))) {
         if (operator != '') {
             num2.push(e.target.textContent);
@@ -28,17 +31,20 @@ buttons.addEventListener('mouseup', (e) => {
         }
     }
 
+    //select operator only after num1 has been selected
     if ((e.target.classList.contains('operator')) && (num1.length != 0) && (operator == '')) {
         operator = e.target.textContent;
         input.textContent = `${num1.join('')} ${operator}`
     }
 
+    //display result after pressing = if num2 has benn added, hence all 3 variables are known, display whole equation as input value
     if ((e.target.classList.contains('=') && (num2.length != 0))) {
         result.textContent = evaluate(num1, num2, operator);
         res.push(result.textContent);
         input.textContent = `${num1.join('')} ${operator} ${num2.join('')} =`;
     }
 
+    //display result of equation after a new operator has been selected if all 3 variables are known and = is not the operator
     if ((e.target.classList.contains('operator')) && (num2.length != 0) && (!(e.target.classList.contains('=')))) {
         result.textContent = evaluate(num1, num2, operator);
         operator = e.target.textContent;
@@ -52,6 +58,7 @@ buttons.addEventListener('mouseup', (e) => {
     console.log(`operator je: ${operator}`);
     console.log(`num2 je: ${num2}`);
 
+    //reset all 3 variables, input and result values
     if (e.target.classList.contains('C')) {
         num1.length = 0;
         num2.length = 0;
