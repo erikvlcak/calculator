@@ -5,7 +5,6 @@ let result = document.querySelector('.display .result');
 let buttons = document.querySelector('.buttons');
 let num1 = [0];
 let num2 = [];
-let res = [];
 let operator = '';
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -30,7 +29,7 @@ buttons.addEventListener('mouseup', (e) => {
             if ((!(num2[0] == 0)) || ((num2[1] == '.'))) {
                 num2.push(e.target.textContent);
                 result.textContent = `${num2.join('')}`;
-                input.textContent = `${num1.join('')} ${operator} ${num2.join('')}`;
+                // input.textContent = `${num1.join('')} ${operator} ${num2.join('')}`;
             }
         } else if ((num1[0] == 0) && (!(num1[1] == '.'))) {
             num1.pop();
@@ -50,14 +49,23 @@ buttons.addEventListener('mouseup', (e) => {
 
     //display result after pressing = if num2 has benn added, hence all 3 variables are known, display whole equation as input value
     if ((e.target.classList.contains('=') && (num2.length != 0))) {
-        result.textContent = evaluate(num1, num2, operator).toFixed(1);
-        res.push(result.textContent);
+        let evaluateResult = evaluate(num1, num2, operator);
+        if (!(Number.isInteger(evaluateResult))) {
+            result.textContent = parseFloat(evaluateResult.toFixed(3));
+        } else {
+            result.textContent = evaluateResult;
+        }
         input.textContent = `${num1.join('')} ${operator} ${num2.join('')} =`;
     }
 
     //display result of equation after a new operator has been selected if all 3 variables are known and = is not the operator
     if ((e.target.classList.contains('operator')) && (num2.length != 0) && (!(e.target.classList.contains('=')))) {
-        result.textContent = evaluate(num1, num2, operator).toFixed(1);
+        let evaluateResult = evaluate(num1, num2, operator);
+        if (!(Number.isInteger(evaluateResult))) {
+            result.textContent = parseFloat(evaluateResult.toFixed(3));
+        } else {
+            result.textContent = evaluateResult;
+        }
         operator = e.target.textContent;
         num1.length = 0;
         num2.length = 0;
@@ -72,7 +80,6 @@ buttons.addEventListener('mouseup', (e) => {
         num1.length = 0;
         num1.push(0);
         num2.length = 0;
-        res.length = 0;
         operator = '';
         input.textContent = '';
         result.textContent = 0;
