@@ -76,7 +76,10 @@ buttons.addEventListener('mouseup', (e) => {
             num2.push(0);
         } else {
             let evaluateResult = evaluate(num1, num2, operator);
-            if (!(Number.isInteger(evaluateResult))) {
+            if (typeof evaluateResult == 'string') {
+                result.textContent = evaluateResult;
+            }
+            else if (!(Number.isInteger(evaluateResult))) {
                 result.textContent = parseFloat(evaluateResult.toFixed(3));
             } else {
                 result.textContent = evaluateResult;
@@ -100,6 +103,11 @@ buttons.addEventListener('mouseup', (e) => {
             completedEvaluation = false;
 
         }
+        else if (typeof storedResult == 'string') {
+            result.textContent = storedResult;
+            completedEvaluation = true;
+        }
+
         else if (!(Number.isInteger(storedResult))) {
             let n = parseFloat(storedResult.toFixed(3));
             result.textContent = n;
@@ -221,7 +229,7 @@ function evaluate(num1, num2, operator) {
             return +num1.join('') * +num2.join('');
         case '÷':
             if (num2 == 0) {
-                return `very funny`
+                return 'very funny'
             } else return +num1.join('') / +num2.join('');
     }
 }
