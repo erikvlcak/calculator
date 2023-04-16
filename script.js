@@ -152,7 +152,7 @@ buttons.addEventListener('mouseup', (e) => {
 
 
     //reset all 3 variables, input and result values
-    if (e.target.classList.contains('C')) {
+    if (e.target.classList.contains('c')) {
         num1.length = 0;
         num1.push(0);
         num2.length = 0;
@@ -164,7 +164,7 @@ buttons.addEventListener('mouseup', (e) => {
     }
 
     //remove last digit from either num1 or num2, after deleting last remaining digit replace it with 0 instead
-    if (e.target.classList.contains('DEL')) {
+    if (e.target.classList.contains('d')) {
         if (operator != '') {
             if ((num2.length != 0) && (num2[0] != 0)) {
                 num2.pop();
@@ -205,7 +205,7 @@ buttons.addEventListener('mouseup', (e) => {
     }
 
     //add - symbol in front of first digit in either num1 or num2. if - symbol already present, remove it instead
-    if (e.target.classList.contains('+-')) {
+    if (e.target.classList.contains('n')) {
         if ((operator) && (num2.length != 0) && (!(completedEvaluation))) {
 
             if (num2[0] == '-') {
