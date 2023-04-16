@@ -9,6 +9,26 @@ let completedEvaluation = null;
 let operator = '';
 let storedResult;
 
+let regex = {
+    operators: /[\+\-\*\.\=\/cdn]/,
+    numbers: /\d/,
+}
+
+function evaluate(num1, num2, operator) {
+    switch (operator) {
+        case '+':
+            return +num1.join('') + +num2.join('');
+        case '-':
+            return +num1.join('') - +num2.join('');
+        case 'x':
+            return +num1.join('') * +num2.join('');
+        case '÷':
+            if (num2 == 0) {
+                return 'very funny'
+            } else return +num1.join('') / +num2.join('');
+    }
+}
+
 document.addEventListener('DOMContentLoaded', () => {
     result.textContent = num1[0];
     console.log(`num1 je: ${num1}`);
@@ -54,7 +74,6 @@ buttons.addEventListener('mouseup', (e) => {
         } else {
             num1.push(e.target.textContent);
             result.textContent = `${num1.join('')} ${operator} ${num2.join('')}`;
-            console.log('priradil som num1');
             completedEvaluation = false;
         }
 
@@ -144,6 +163,7 @@ buttons.addEventListener('mouseup', (e) => {
         storedResult = null;
     }
 
+    //remove last digit from either num1 or num2, after deleting last remaining digit replace it with 0 instead
     if (e.target.classList.contains('DEL')) {
         if (operator != '') {
             if ((num2.length != 0) && (num2[0] != 0)) {
@@ -184,6 +204,7 @@ buttons.addEventListener('mouseup', (e) => {
         }
     }
 
+    //add - symbol in front of first digit in either num1 or num2. if - symbol already present, remove it instead
     if (e.target.classList.contains('+-')) {
         if ((operator) && (num2.length != 0) && (!(completedEvaluation))) {
 
@@ -218,18 +239,57 @@ buttons.addEventListener('mouseup', (e) => {
 })
 
 
+//KEY EVENTS
 
-function evaluate(num1, num2, operator) {
-    switch (operator) {
-        case '+':
-            return +num1.join('') + +num2.join('');
-        case '-':
-            return +num1.join('') - +num2.join('');
-        case 'x':
-            return +num1.join('') * +num2.join('');
-        case '÷':
-            if (num2 == 0) {
-                return 'very funny'
-            } else return +num1.join('') / +num2.join('');
-    }
-}
+document.addEventListener('keydown', (e) => {
+    buttons.querySelectorAll('div').forEach((item) => {
+        if ((regex['numbers'].test(item.key)) || (regex['operators'].test(item.key))) {
+
+            if (item.classList.contains(e.key)) {
+
+                item.style.boxShadow = '0px 0px';
+            }
+        }
+    })
+});
+
+document.addEventListener('keyup', (e) => {
+    buttons.querySelectorAll('div').forEach((item) => {
+        if ((regex['numbers'].test(item.key)) || (regex['operators'].test(item.key))) {
+
+            if (item.classList.contains(e.key)) {
+
+                item.style.boxShadow = '3px 3px';
+            }
+        }
+
+
+
+        if ((regex['numbers'].test(e.key) && (item.textContent == e.key) && (num1[0] == 0) && (!(num1[1] == '.')))) {
+            num1.pop();
+            num1.push(e.key);
+            result.textContent = `${num1.join('')} ${operator} ${num2.join('')}`;
+            completedEvaluation = false;
+
+        } else if (regex['numbers'].test(e.key) && (item.textContent == e.key)) {
+            num1.push(e.key);
+            result.textContent = `${num1.join('')} ${operator} ${num2.join('')}`;
+            completedEvaluation = false;
+        }
+
+    })
+    console.log(`num1 je: ${num1}`);
+    console.log(`operator je: ${operator}`);
+    console.log(`num2 je: ${num2}`);
+    console.log(completedEvaluation);
+    console.log(storedResult);
+})
+
+
+
+
+
+
+
+
+
