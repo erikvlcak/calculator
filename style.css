@@ -48,12 +48,12 @@ header {
 main {
     display: flex;
     justify-content: center;
-    padding: 50px;
+    padding: 50px 20px;
 }
 
 .calculator {
-    min-height: 55.6vh;
-    width: 23.6vw;
+    min-height: 650px;
+    width: 400px;
     display: grid;
     grid-template: min-content min-content 1fr / 2fr 1fr;
     padding: 20px;
@@ -119,8 +119,8 @@ main {
 }
 
 .buttons div {
-    min-width: 4.9vw;
-    min-height: 4.3vh;
+    width: 85%;
+    height: 70px;
     border-radius: 12px;
     display: grid;
     place-items: center;
