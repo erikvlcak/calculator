@@ -31,10 +31,6 @@ function evaluate(num1, num2, operator) {
 
 document.addEventListener('DOMContentLoaded', () => {
     result.textContent = num1[0];
-    console.log(`num1 je: ${num1}`);
-    console.log(`operator je: ${operator}`);
-    console.log(`num2 je: ${num2}`);
-    console.log(completedEvaluation);
 })
 
 buttons.addEventListener('mousedown', (e) => {
@@ -229,13 +225,6 @@ buttons.addEventListener('mouseup', (e) => {
             result.textContent = `${num1.join('')}`;
         }
     }
-
-
-    console.log(`num1 je: ${num1}`);
-    console.log(`operator je: ${operator}`);
-    console.log(`num2 je: ${num2}`);
-    console.log(completedEvaluation);
-    console.log(storedResult);
 })
 
 
@@ -401,6 +390,7 @@ document.addEventListener('keyup', (e) => {
             }
         }
 
+        //add decimal point to either num1 or num2 if it is not already present in either number
         if ((item.classList.contains(e.key)) && ((e.key == '.'))) {
             if (operator) {
                 if (!(num2.includes(item.textContent))) {
@@ -444,12 +434,6 @@ document.addEventListener('keyup', (e) => {
 
     });
 
-
-    console.log(`num1 je: ${num1}`);
-    console.log(`operator je: ${operator}`);
-    console.log(`num2 je: ${num2}`);
-    console.log(completedEvaluation);
-    console.log(storedResult);
 
 
 })
