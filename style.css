@@ -123,7 +123,7 @@ main {
 
 .buttons div {
     width: 85%;
-    height: 83px;
+    height: 85%;
     border-radius: 12px;
     display: grid;
     place-items: center;
