@@ -41,23 +41,22 @@ header {
     font-size: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
     gap: 5px;
 }
 
 body {
     display: grid;
-    grid-template: 5fr 1fr / 1fr;
+    grid-template: 3fr 1fr / 1fr;
     height: 100vh;
     place-items: center;
 }
 
 main {
-    padding: 25px 20px 50px 20px;
+    padding: 25px 20px 30px 20px;
 }
 
 .calculator {
-    height: 650px;
+    height: 700px;
     display: grid;
     grid-template: min-content min-content 1fr / 2fr 1fr;
     padding: 20px;
@@ -124,7 +123,7 @@ main {
 
 .buttons div {
     width: 85%;
-    height: 70px;
+    height: 83px;
     border-radius: 12px;
     display: grid;
     place-items: center;
