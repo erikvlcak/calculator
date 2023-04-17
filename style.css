@@ -52,8 +52,8 @@ main {
 }
 
 .calculator {
-    min-height: 650px;
-    width: 400px;
+    min-height: 55.6vh;
+    width: 23.6vw;
     display: grid;
     grid-template: min-content min-content 1fr / 2fr 1fr;
     padding: 20px;
@@ -119,8 +119,8 @@ main {
 }
 
 .buttons div {
-    width: 80px;
-    height: 70px;
+    min-width: 4.9vw;
+    min-height: 4.3vh;
     border-radius: 12px;
     display: grid;
     place-items: center;
