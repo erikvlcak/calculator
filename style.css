@@ -31,10 +31,10 @@ a {
     align-self: center;
 }
 
-header {
+/* header {
     text-align: center;
     padding: 10px;
-}
+} */
 
 .footer {
     text-decoration: none;
@@ -45,10 +45,15 @@ header {
     gap: 5px;
 }
 
+body {
+    display: grid;
+    grid-template: 5fr 1fr / 1fr;
+    height: 100vh;
+    place-items: center;
+}
+
 main {
-    display: flex;
-    justify-content: center;
-    padding: 50px 20px;
+    padding: 25px 25px 50px 25px;
 }
 
 .calculator {
