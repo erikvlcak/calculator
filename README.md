@@ -16,3 +16,7 @@ Main goals:
 - Practice woring with arrays and array methods, number methods, objects, keyboard DOM events and regex test.
 - Practice flexbox and grid layouts.
 - Practice variables management and complex system of conditionals.
+
+This project was made as a part of the [The Odin Project](https://www.theodinproject.com/lessons/foundations-calculator)  curriculum.
+
+Have fun with math and feel free to leave feedback.
