@@ -1,4 +1,4 @@
-# calculator
+# Calculator
 
 Perfectly working calculator with all basic operations in a colorful design. Nothing more, nothing less!
 
